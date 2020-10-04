@@ -9,6 +9,14 @@ const App = () => {
     setPeople([...people, person]);
   };
 
+  const removePerson = (personIndex) => {
+    const updatedPeople = [...people].filter(
+      (_person, index) => index !== personIndex
+    );
+    console.log({ updatedPeople });
+    setPeople(updatedPeople);
+  };
+
   return (
     <div className="App">
       <div>
@@ -35,11 +43,9 @@ const App = () => {
       </form>
       <div>
         {people.map((person, index) => (
-          <div>
+          <div key={index}>
             <p>{person.name}</p>
-            <button onClick={() => console.log('Button clicked')}>
-              Remove
-            </button>
+            <button onClick={() => removePerson(index)}>Remove</button>
           </div>
         ))}
       </div>
