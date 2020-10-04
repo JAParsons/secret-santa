@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Santa from './components/santa/santa';
 import './App.css';
 
 const App = () => {
@@ -19,10 +20,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <div>
-        <img src={'https://via.placeholder.com/150'} />
-        <h1>Secret Santa Generator</h1>
-      </div>
+      <Santa />
+      <h1>Secret Santa Generator</h1>
       <button onClick={() => console.log('Button clicked')}>
         Generate Secret Santa
       </button>
