@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, IconButton, TextField, Typography } from '@material-ui/core';
+import { Button, IconButton, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -55,7 +55,7 @@ const App = () => {
             setPersonName('');
           }}
         >
-          <TextField
+          <input
             type="text"
             placeholder="Enter a name..."
             value={personName}
@@ -69,15 +69,17 @@ const App = () => {
       {people.length > 0 ? (
         <div className="people-list">
           {people.map((person, index) => (
-            <div key={index}>
+            <div key={index} className="person">
               <p>{person.name}</p>
-              <IconButton
-                variant="contained"
-                color="primary"
-                onClick={() => removePerson(index)}
-              >
-                <DeleteIcon />
-              </IconButton>
+              <div className="remove-person">
+                <IconButton
+                  variant="contained"
+                  color="primary"
+                  onClick={() => removePerson(index)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </div>
             </div>
           ))}
         </div>

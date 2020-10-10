@@ -9,14 +9,29 @@ h4 {
   font-weight: 600;
 }
 
+input {
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+input:focus {
+  border: 1px solid rgb(0, 110, 255);
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.05);
+}
+
 .person-form {
-  display: block;
+  display: flex;
   margin-left: auto;
   margin-right: auto;
   width: 322px;
-  height: 20px;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  justify-content: center;
+  padding: 1rem;
   background-color: white;
   border-radius: 20px;
   margin-top: 1rem;
@@ -29,10 +44,23 @@ h4 {
   margin-right: auto;
   width: 322px;
   height: auto;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding: 1rem;
   background-color: white;
   border-radius: 20px;
   margin-top: 1rem;
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.05);
+}
+
+.person {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.remove-person {
+  flex-grow: 1;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 0.7rem;
 }
