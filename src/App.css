@@ -50,17 +50,3 @@ input:focus {
   margin-top: 1rem;
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.05);
 }
-
-.person {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem;
-}
-
-.remove-person {
-  flex-grow: 1;
-  padding: 0;
-  display: flex;
-  justify-content: flex-end;
-  margin-left: 0.7rem;
-}

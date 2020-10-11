@@ -1,0 +1,14 @@
+.person {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.person-button-wrapper {
+  flex-grow: 1;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 0.7rem;
+  width: 110px;
+}
