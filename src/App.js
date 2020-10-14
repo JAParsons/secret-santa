@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, IconButton, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
@@ -11,6 +11,12 @@ const App = () => {
   const [people, setPeople] = useState([]);
   const [personName, setPersonName] = useState('');
   const [generated, setGenerated] = useState(false);
+  const [paramData, setParamData] = useState({});
+
+  useEffect(() => {
+    const decryptedQueryParam = decryptData('some key', getQueryParam('data'));
+    setParamData(decryptedQueryParam);
+  }, []);
 
   const addPerson = (person) => {
     setGenerated(false);
@@ -61,23 +67,6 @@ const App = () => {
                 generated={generated}
                 removePerson={removePerson}
               />
-              {/* {generated ? (
-                <div className="person-buton-wrapper">
-                  <CopyButton onClick={() => setCopyButtonText('yo')}>
-                    {copyButtonText}
-                  </CopyButton>
-                </div>
-              ) : (
-                <div className="person-buton-wrapper">
-                  <IconButton
-                    variant="contained"
-                    color="primary"
-                    onClick={() => removePerson(index)}
-                  >
-                    <DeleteIcon />
-                  </IconButton>
-                </div>
-              )} */}
             </div>
           ))}
         </div>
@@ -99,5 +88,13 @@ const GenerateButton = withStyles((theme) => ({
     paddingBottom: 16
   }
 }))(Button);
+
+const getQueryParam = (key) =>
+  new URLSearchParams(window.location.search).get(key);
+
+// dummy function for now
+const decryptData = (key, encData) => {
+  return encData;
+};
 
 export default App;
