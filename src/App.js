@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import CryptoJS from 'crypto-js';
 import { Button, IconButton, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
@@ -14,8 +15,22 @@ const App = () => {
   const [paramData, setParamData] = useState({});
 
   useEffect(() => {
-    const decryptedQueryParam = decryptData('some key', getQueryParam('data'));
-    setParamData(decryptedQueryParam);
+    // const decryptedQueryParam = decryptData('some key', getQueryParam('data'));
+    // setParamData(decryptedQueryParam);
+    console.log(
+      encryptData(JSON.stringify({ name: 'John', person: 'Freya' }), 'sdfdsf')
+    );
+    console.log(
+      JSON.parse(
+        decryptData(
+          encryptData(
+            JSON.stringify({ name: 'John', person: 'Freya' }),
+            'sdfdsf'
+          ),
+          'sdfdsf'
+        )
+      )
+    );
   }, []);
 
   const addPerson = (person) => {
@@ -48,6 +63,7 @@ const App = () => {
         >
           <input
             type="text"
+            required
             placeholder="Enter a name..."
             value={personName}
             onChange={(e) => setPersonName(e.target.value)}
@@ -92,9 +108,12 @@ const GenerateButton = withStyles((theme) => ({
 const getQueryParam = (key) =>
   new URLSearchParams(window.location.search).get(key);
 
-// dummy function for now
-const decryptData = (key, encData) => {
-  return encData;
+const encryptData = (data, key) => {
+  return CryptoJS.AES.encrypt(data, key);
+};
+
+const decryptData = (encData, key) => {
+  return CryptoJS.AES.decrypt(encData, key).toString(CryptoJS.enc.Utf8);
 };
 
 export default App;
