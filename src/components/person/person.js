@@ -34,10 +34,10 @@ const Person = ({ person, index, generated, removePerson, encryptData }) => {
           </CopyToClipboard>
         </div>
       ) : (
-        <div className="person-buton-wrapper">
+        <div className="person-button-wrapper">
           <IconButton
             variant="contained"
-            color="primary"
+            color="secondary"
             onClick={() => removePerson(index)}
           >
             <DeleteIcon />

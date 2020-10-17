@@ -35,7 +35,28 @@ const App = () => {
     setPeople(updatedPeople);
   };
 
-  const generate = () => {};
+  const generate = () => {
+    const shuffledPeople = [...people];
+    const copiedPeople = [...people];
+
+    // The Sattolo cycle is an algorithm for randomly
+    // shuffling an array in such a way that each
+    // element ends up in a new position.
+    for (let i = shuffledPeople.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * i);
+      const temp = shuffledPeople[i];
+      shuffledPeople[i] = shuffledPeople[j];
+      shuffledPeople[j] = temp;
+    }
+
+    copiedPeople.map((person, index) => {
+      person.toGift = shuffledPeople[index].name;
+    });
+
+    console.log(copiedPeople);
+    setPeople(copiedPeople);
+    setGenerated(true);
+  };
 
   return (
     <div className="app">
@@ -67,10 +88,7 @@ const App = () => {
       {!paramData ? (
         <>
           <Typography variant="h4">Secret Santa Generator</Typography>
-          <GenerateButton
-            variant="contained"
-            onClick={() => setGenerated(true)}
-          >
+          <GenerateButton variant="contained" onClick={() => generate()}>
             Generate Secret Santa
           </GenerateButton>
           <div className="person-form">
@@ -88,7 +106,7 @@ const App = () => {
                 value={personName}
                 onChange={(e) => setPersonName(e.target.value)}
               />
-              <IconButton color="primary" type="submit">
+              <IconButton color="secondary" type="submit">
                 <AddIcon />
               </IconButton>
             </form>
@@ -112,7 +130,7 @@ const App = () => {
       ) : (
         <>
           <Typography variant="h5">
-            Hello {paramData?.name}! <br></br> You're getting a gift for
+            Hello {paramData?.name}! <br></br> You're getting a gift for{' '}
             <strong>{paramData?.toGift}</strong>
           </Typography>
           <Typography variant="h5"></Typography>
