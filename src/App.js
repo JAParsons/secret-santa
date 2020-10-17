@@ -131,7 +131,7 @@ const App = () => {
         <>
           <Typography variant="h5">
             Hello {paramData?.name}! <br></br> You're getting a gift for{' '}
-            <strong>{paramData?.toGift}</strong>
+            <strong>{paramData?.toGift}</strong>.
           </Typography>
           <Typography variant="h5"></Typography>
         </>
