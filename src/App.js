@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CryptoJS from 'crypto-js';
+import Particles from 'react-particles-js';
 import { Button, IconButton, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
@@ -38,6 +39,30 @@ const App = () => {
 
   return (
     <div className="app">
+      <Particles
+        params={{
+          particles: {
+            number: {
+              value: 300,
+              density: {
+                enable: false
+              }
+            },
+            size: {
+              value: 6,
+              random: true
+            },
+            move: {
+              speed: 2,
+              direction: 'bottom',
+              out_mode: 'out'
+            },
+            line_linked: {
+              enable: false
+            }
+          }
+        }}
+      />
       <Santa />
       {!paramData ? (
         <>
