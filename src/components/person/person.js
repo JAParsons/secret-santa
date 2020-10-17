@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Button, IconButton, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { orange } from '@material-ui/core/colors';
 import './person.css';
 
-const Person = ({ person, index, generated, removePerson }) => {
+const Person = ({ person, index, generated, removePerson, encryptData }) => {
   const [copyButtonText, setCopyButtonText] = useState('Copy link');
 
   const copyLinkHandler = () => {
@@ -15,14 +16,22 @@ const Person = ({ person, index, generated, removePerson }) => {
     }, 1000);
   };
 
+  const generateLink = () => {
+    const data = JSON.stringify({ name: person.name, toGift: person.toGift });
+    const encryptedData = encryptData(data);
+    return window.location.origin.toString() + '/?data=' + encryptedData;
+  };
+
   return (
     <>
       <Typography>{person.name}</Typography>
       {generated ? (
         <div className="person-button-wrapper">
-          <CopyButton onClick={() => copyLinkHandler()}>
-            {copyButtonText}
-          </CopyButton>
+          <CopyToClipboard text={generateLink()}>
+            <CopyButton onClick={() => copyLinkHandler()}>
+              {copyButtonText}
+            </CopyButton>
+          </CopyToClipboard>
         </div>
       ) : (
         <div className="person-buton-wrapper">
