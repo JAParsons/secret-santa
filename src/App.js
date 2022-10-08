@@ -51,6 +51,7 @@ const App = () => {
 
     copiedPeople.map((person, index) => {
       person.toGift = shuffledPeople[index].name;
+      return person;
     });
 
     console.log(copiedPeople);
